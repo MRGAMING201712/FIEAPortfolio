@@ -24,7 +24,7 @@ Enemy AI
 Abilities
 
 *	AbilityComponent / AbilityDefinition -cast an ability from a slot, pay its cost, start the cooldown, play its montage.
-*	AbilityEffect and its subclasses (ProjectileAbilityEffect, InstantStrikeAbilityEffect, SelfHealAbilityEffect, TickingAuraEffect, AuraAbilityEffect) -what actually happens when an ability lands, spawn a projectile, hit everything in a radius, heal, drop a damage over time zone, or buff/debuff an attribute.
+*	AbilityEffect and its subclasses (ProjectileAbilityEffect, InstantStrikeAbilityEffect, SelfHealAbilityEffect, TickingAuraEffect, AuraAbilityEffect) -what happens when an ability lands, spawn a projectile, hit everything in a radius, heal, drop a damage over time zone, or buff/debuff an attribute.
 *	AbilityCastNotify -anim notify that fires the effect at the right point in the cast animation.
 *	ProjectileActor / AuraActor -the actual actors those effects spawn.
 
@@ -44,5 +44,5 @@ Waves & difficulty
 Quests
 
 *	QuestManagerSubsystem -tracks active quests, objective progress, and fires off events when something in the world matches an objective's gameplay tag.
-*	QuestDefinition / QuestBehavior / TimedQuestBehavior -data defined quests with pluggable behavior classes for anything that needs custom logic (a timed quest that fails you if you're too slow, for example).
+*	QuestDefinition / QuestBehavior / TimedQuestBehavior -data defined quests with behavior classes for anything that needs custom logic (a timed quest that fails you if you're too slow, for example).
 
