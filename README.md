@@ -2,6 +2,11 @@
 
 What's actually in here
 
+Painting
+* This is the main game mechanic for my godot game expo game where you are in a 2d level using tile mapping and have to paint the city back to life while defeating the enemies along the way. In order to have this work I built it in two parts: first the shader which does the coloring of the tilemap, from gray to color or color to gray, and second the painting script which reads the tilemap and has all the logic for it.
+* World Reveal Shader - Using my knowledge from Computer Graphics I made a shader that allows me to change the tint/intensity of the paint to allow it to not overwrite the pixels and allow you to still see the detail of the tilemap.
+* PaintManager Script - This was originally made to work with images, but was slightly modified to work with tilemaps to allow dynamic changes to the levels. This has the logic for defining the zone, setting it gray, what painting does to the tilemap, and some gameplay helpers built for other scripts to utilize.
+
 Combat
 
 *	CharacterBase -shared base for player and enemies. Has the attribute set, action state, combo, abilities, equipment, and soft target components so both sides of a fight run the exact same code.
