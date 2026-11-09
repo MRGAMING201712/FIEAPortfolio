@@ -2,10 +2,12 @@
 
 What's actually in here
 
-Painting
-* This is the main game mechanic for my godot game expo game where you are in a 2d level using tile mapping and have to paint the city back to life while defeating the enemies along the way. In order to have this work I built it in two parts: first the shader which does the coloring of the tilemap, from gray to color or color to gray, and second the painting script which reads the tilemap and has all the logic for it.
-* World Reveal Shader - Using my knowledge from Computer Graphics I made a shader that allows me to change the tint/intensity of the paint to allow it to not overwrite the pixels and allow you to still see the detail of the tilemap.
-* PaintManager Script - This was originally made to work with images, but was slightly modified to work with tilemaps to allow dynamic changes to the levels. This has the logic for defining the zone, setting it gray, what painting does to the tilemap, and some gameplay helpers built for other scripts to utilize.
+Abilities
+
+*	AbilityComponent / AbilityDefinition -cast an ability from a slot, pay its cost, start the cooldown, play its montage.
+*	AbilityEffect and its subclasses (ProjectileAbilityEffect, InstantStrikeAbilityEffect, SelfHealAbilityEffect, TickingAuraEffect, AuraAbilityEffect) -what happens when an ability lands, spawn a projectile, hit everything in a radius, heal, drop a damage over time zone, or buff/debuff an attribute.
+*	AbilityCastNotify -anim notify that fires the effect at the right point in the cast animation.
+*	ProjectileActor / AuraActor -the actual actors those effects spawn.
 
 Combat
 
@@ -26,12 +28,10 @@ Enemy AI
 *	STC_HasAttackToken / STC_DistanceToTarget -State Tree conditions those tasks check against.
 *	EnemyAIController / EnemyCharacter -possesses the enemy pawn and kicks off its State Tree.
 
-Abilities
-
-*	AbilityComponent / AbilityDefinition -cast an ability from a slot, pay its cost, start the cooldown, play its montage.
-*	AbilityEffect and its subclasses (ProjectileAbilityEffect, InstantStrikeAbilityEffect, SelfHealAbilityEffect, TickingAuraEffect, AuraAbilityEffect) -what happens when an ability lands, spawn a projectile, hit everything in a radius, heal, drop a damage over time zone, or buff/debuff an attribute.
-*	AbilityCastNotify -anim notify that fires the effect at the right point in the cast animation.
-*	ProjectileActor / AuraActor -the actual actors those effects spawn.
+Painting
+* This is the main game mechanic for my godot game expo game where you are in a 2d level using tile mapping and have to paint the city back to life while defeating the enemies along the way. In order to have this work I built it in two parts: first the shader which does the coloring of the tilemap, from gray to color or color to gray, and second the painting script which reads the tilemap and has all the logic for it.
+* World Reveal Shader - Using my knowledge from Computer Graphics I made a shader that allows me to change the tint/intensity of the paint to allow it to not overwrite the pixels and allow you to still see the detail of the tilemap.
+* PaintManager Script - This was originally made to work with images, but was slightly modified to work with tilemaps to allow dynamic changes to the levels. This has the logic for defining the zone, setting it gray, what painting does to the tilemap, and some gameplay helpers built for other scripts to utilize.
 
 Progression & items
 
@@ -39,15 +39,14 @@ Progression & items
 *	InventoryComponent / EquipmentComponent -hold weapons and armor, equip/unequip, weapon upgrading with a cost curve.
 *	ArmorDefinition / WeaponDefinition -the data assets behind gear.
 
+Quests
+
+*	QuestManagerSubsystem -tracks active quests, objective progress, and fires off events when something in the world matches an objective's gameplay tag.
+*	QuestDefinition / QuestBehavior / TimedQuestBehavior -data defined quests with behavior classes for anything that needs custom logic (a timed quest that fails you if you're too slow, for example).
+
 Waves & difficulty
 
 *	WaveSpawnerComponent / WaveSpawnerConfig -spawns hand made waves in order, tracks who's still alive to know when a wave's actually done.
 *	ProceduralWaveTable -once you run out of hand made waves, generates new ones: enemy count ramps up and caps out, enemy types are picked by weighted roll and gated behind a wave number unlock.
 *	DifficultyManager / DifficultyProfile / DifficultyScalable -a difficulty profile builds a map of stat multipliers per wave; anything implementing the IDifficultyScalable interface (usually enemies) gets scaled without the spawner needing to know what it is.
 *	WaveGamemode -hooks the spawner up to the player and routes XP/currency rewards on enemy kills.
-
-Quests
-
-*	QuestManagerSubsystem -tracks active quests, objective progress, and fires off events when something in the world matches an objective's gameplay tag.
-*	QuestDefinition / QuestBehavior / TimedQuestBehavior -data defined quests with behavior classes for anything that needs custom logic (a timed quest that fails you if you're too slow, for example).
-
