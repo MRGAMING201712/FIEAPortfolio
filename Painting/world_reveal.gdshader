@@ -28,8 +28,8 @@ void fragment()
         vec4 paint = texelFetch(paint_mask, p, 0);
 		if (paint.a > 0.5)
 		{
-		    vec3 tinted = paint.rgb * (0.5 + lum);          // paint color, shaded by tile detail
-		    color = mix(vec3(lum), tinted, tint_strength);   // blend from the gray look, not the original color
+		    vec3 tinted = paint.rgb * (0.5 + lum); // paint color, shaded by tile detail
+		    color = mix(vec3(lum), tinted, tint_strength); // blend from the gray look, not the original color
 		}
     }
 
